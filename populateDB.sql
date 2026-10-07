@@ -214,11 +214,16 @@ INSERT INTO teaching_loads (professor_id, group_id, credits) VALUES
 
 # Error constraint ck_students_access_method
 -- Primero necesitamos una persona
-INSERT INTO people (person_id, dni, first_name, last_name, age, email)
-VALUES (2000, '22222222B', 'María', 'Estudiante', 20, 'maria@us.es');
+#INSERT INTO people (person_id, dni, first_name, last_name, age, email)
+#VALUES (2000, '22222222B', 'María', 'Estudiante', 20, 'maria@us.es');
 
 -- Intentamos crear estudiante con método inválido
-INSERT INTO students (student_id, access_method)
-VALUES (2000, 'Erasmus');
+#INSERT INTO students (student_id, access_method)
+#VALUES (2000, 'Erasmus');
 
+# ERRORES EN DEGREES
+
+# Error constraint rn13_degree_duration
+INSERT INTO degrees (degree_name, duration_years)
+VALUES ('Grado en Pruebas', 2);
 
