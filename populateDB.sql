@@ -236,6 +236,12 @@ INSERT INTO teaching_loads (professor_id, group_id, credits) VALUES
 # ERRORES EN GROUPS
 
 # Error constraint rn15_groups_year
-INSERT INTO groups (subject_id, group_name, activity, academic_year)
-VALUES (1, 'T1', 'Teoría', 1999);
+#INSERT INTO groups (subject_id, group_name, activity, academic_year)
+#VALUES (1, 'T1', 'Teoría', 1999);
+
+# ERRORES EN TEACHING_LOADS
+
+# Error constraint ck_teaching_loads_credits
+#INSERT INTO teaching_loads (professor_id, group_id, credits)
+#VALUES (1, 1, 0);
 
