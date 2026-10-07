@@ -143,7 +143,12 @@ ALTER TABLE subjects
     ADD CONSTRAINT rn_uq_subjects_name UNIQUE (subject_name),
     ADD CONSTRAINT rn_uq_subjects_acronym UNIQUE (acronym);
 
-	
+ALTER TABLE groups
+	ADD CONSTRAINT rn15_groups_year CHECK (academic_year BETWEEN 2000 AND 2100),
+	ADD CONSTRAINT ck_groups_activity CHECK (
+		activity IN ('Teoría','Laboratorio')
+	),
+	ADD CONSTRAINT rn_uq_groups_name UNIQUE (subject_id, group_name, academic_year);
 	
 
 
