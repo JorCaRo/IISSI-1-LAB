@@ -73,3 +73,10 @@ INSERT INTO students (student_id, access_method) VALUES
     (25, 'Selectividad');
 
 
+# Datos DEGREES
+
+INSERT INTO degrees (degree_id, degree_name, duration_years) VALUES
+        (1, 'Ingeniería del Software', 4),
+        (2, 'Ingeniería de Computadores', 4),
+        (3, 'Tecnologías Informáticas', 4);
+        
