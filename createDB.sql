@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS degrees;
 DROP TABLE IF EXISTS subjects;
 DROP TABLE IF EXISTS groups;
 DROP TABLE IF EXISTS group_enrollments;
+DROP TABLE IF EXISTS grades;
 SET FOREIGN_KEY_CHECKS = 1;
 
 
@@ -85,6 +86,20 @@ CREATE TABLE group_enrollments (
     student_id INT,
     group_id INT,
     PRIMARY KEY (student_id, group_id),
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (group_id) REFERENCES groups(group_id)
+);
+
+# Tabla GRADES
+
+CREATE TABLE grades (
+    grade_id INT AUTO_INCREMENT,
+    student_id INT NOT NULL,
+    group_id INT NOT NULL,
+    grade_value DECIMAL(4,2) NOT NULL,
+    exam_call VARCHAR(20) NOT NULL,
+    with_honors BOOLEAN NOT NULL DEFAULT 0,
+    PRIMARY KEY (grade_id),
     FOREIGN KEY (student_id) REFERENCES students(student_id),
     FOREIGN KEY (group_id) REFERENCES groups(group_id)
 );
