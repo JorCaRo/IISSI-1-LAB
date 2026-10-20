@@ -1,10 +1,13 @@
 # Reinicio de commits por error en repositorio
 
  -- Primero eliminados todos los datos de tabla en el caso de que los hubiese y después insertamos los datos iniciales.
+SET FOREIGN_KEY_CHECKS = 0;
 DELETE FROM people;
+DELETE FROM professors;
+SET FOREIGN_KEY_CHECKS = 1;
 	
-	
-	
+
+# Datos PEOPLE
 
 INSERT INTO people (person_id, dni, first_name, last_name, age, email) VALUES
     (1, '00000001A', 'David', 'Ruiz', 50, 'druiz@us.es'),
@@ -33,3 +36,12 @@ INSERT INTO people (person_id, dni, first_name, last_name, age, email) VALUES
     (24, '10000024Z', 'Álex', 'Delgado', 22, 'alex.delgado@alum.us.es'),
     (25, '10000025A', 'Paula', 'Bermejo', 21, 'paula.bermejo@alum.us.es');
 
+
+# Datos PROFESSORS
+
+INSERT INTO professors (professor_id, category) VALUES
+    (1, 'Catedrático'),
+    (2, 'Titular'),
+    (3, 'AyudanteDoctor'),
+    (4, 'Titular'),
+    (5, 'Ayudante');
