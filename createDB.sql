@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS subjects;
 DROP TABLE IF EXISTS groups;
 DROP TABLE IF EXISTS group_enrollments;
 DROP TABLE IF EXISTS grades;
+DROP TABLE IF EXISTS teaching_loads;
 SET FOREIGN_KEY_CHECKS = 1;
 
 
@@ -101,5 +102,16 @@ CREATE TABLE grades (
     with_honors BOOLEAN NOT NULL DEFAULT 0,
     PRIMARY KEY (grade_id),
     FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (group_id) REFERENCES groups(group_id)
+);
+
+# Tabla TEACHING_LOADS
+
+CREATE TABLE teaching_loads (
+    professor_id INT,
+    group_id INT,
+    credits DECIMAL(4,1) NOT NULL,
+    PRIMARY KEY (professor_id, group_id),
+    FOREIGN KEY (professor_id) REFERENCES professors(professor_id),
     FOREIGN KEY (group_id) REFERENCES groups(group_id)
 );

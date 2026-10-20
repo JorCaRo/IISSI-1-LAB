@@ -9,6 +9,8 @@ DELETE FROM degrees;
 DELETE FROM subjects;
 DELETE FROM groups;
 DELETE FROM group_enrollments;
+DELETE FROM grades;
+DELETE FROM teaching_loads;
 SET FOREIGN_KEY_CHECKS = 1;
 	
 
@@ -181,3 +183,12 @@ INSERT INTO grades (grade_id, student_id, group_id, grade_value, exam_call, with
     (34, 24, 1, 6.0, 'Tercera', 0),
     (35, 25, 1, 5.7, 'Tercera', 0);
 
+
+# Datos TEACHING_LOADS
+
+INSERT INTO teaching_loads (professor_id, group_id, credits) VALUES
+	(1, 1, 3.0),
+	(2, 1, 3.0),
+	(3, 2, 3.0),
+	(5, 3, 1.5),
+	(4, 3, 1.5);
