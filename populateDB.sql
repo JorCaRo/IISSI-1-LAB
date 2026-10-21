@@ -214,3 +214,12 @@ INSERT INTO teaching_loads (professor_id, group_id, credits) VALUES
 #INSERT INTO people (dni, first_name, last_name, age, email)
 #VALUES ('88888888A', 'Pedro', 'Test', 30, 'pedro@test.es');
 
+# Pruebas PROFESSORS
+
+# Insertar profesor con categoría no válida
+#ALTER TABLE professors
+#    ADD CONSTRAINT ck_professors_category CHECK (
+#        category IN ('Ayudante','AyudanteDoctor','Titular','Catedrático')
+#    );
+
+

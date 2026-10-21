@@ -125,3 +125,12 @@ ALTER TABLE people
     ADD CONSTRAINT rn14_people_dni CHECK (dni REGEXP '^[0-9]{8}[A-Za-z]$'),
     ADD CONSTRAINT rn_uq_people_dni UNIQUE (dni),
     ADD CONSTRAINT rn_uq_people_email UNIQUE (email);
+
+# Restricciones PROFESSORS
+
+ALTER TABLE professors
+    ADD CONSTRAINT ck_professors_category CHECK (
+        category IN ('Ayudante','AyudanteDoctor','Titular','Catedrático')
+    );
+
+
