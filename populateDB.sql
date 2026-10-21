@@ -223,3 +223,13 @@ INSERT INTO teaching_loads (professor_id, group_id, credits) VALUES
 #    );
 
 
+# Pruebas STUDENTS
+
+# Insertamos un estudiante con método de acceso no válido
+-- Primero necesitamos una persona
+#INSERT INTO people (person_id, dni, first_name, last_name, age, email)
+#VALUES (2000, '22222222B', 'María', 'Estudiante', 20, 'maria@us.es');
+
+-- Intentamos crear estudiante con método inválido
+#INSERT INTO students (student_id, access_method)
+#VALUES (2000, 'Erasmus');

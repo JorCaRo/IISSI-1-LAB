@@ -133,4 +133,10 @@ ALTER TABLE professors
         category IN ('Ayudante','AyudanteDoctor','Titular','Catedrático')
     );
 
+# Restricciones STUDENTS
+
+ALTER TABLE students
+    ADD CONSTRAINT ck_students_access_method CHECK (
+        access_method IN ('Selectividad','Ciclo','Mayor','Titulado','Extranjero')
+    );
 
