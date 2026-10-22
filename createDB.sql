@@ -146,3 +146,14 @@ ALTER TABLE degrees
     ADD CONSTRAINT ck_degrees_rn13_duration CHECK (duration_years BETWEEN 3 AND 6),
     ADD CONSTRAINT uq_degrees_name UNIQUE (degree_name);
 
+# Restricciones SUBJECTS
+
+ALTER TABLE subjects
+    ADD CONSTRAINT ck_subjects_rn10_credits CHECK (credits IN (6, 12)),
+    ADD CONSTRAINT ck_subjects_rn16_course CHECK (course BETWEEN 1 AND 6),
+    ADD CONSTRAINT ck_subjects_type CHECK (
+        subject_type IN ('Formación Básica','Obligatoria','Optativa')
+    ),
+    ADD CONSTRAINT uq_subjects_name UNIQUE (subject_name),
+    ADD CONSTRAINT uq_subjects_acronym UNIQUE (acronym);
+
