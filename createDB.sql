@@ -66,7 +66,7 @@ CREATE TABLE subjects (
     course TINYINT NOT NULL,
     subject_type VARCHAR(30) NOT NULL,
     PRIMARY KEY (subject_id),
-    FOREIGN KEY (degree_id) REFERENCES degrees(degree_id)
+    FOREIGN KEY (degree_id) REFERENCES degrees(degree_id) ON DELETE SET NULL
 );
 
 # Tabla GROUPS
@@ -78,7 +78,7 @@ CREATE TABLE groups (
     activity VARCHAR(15) NOT NULL,
     academic_year YEAR NOT NULL,
     PRIMARY KEY (group_id),
-    FOREIGN KEY (subject_id) REFERENCES subjects(subject_id)
+    FOREIGN KEY (subject_id) REFERENCES subjects(subject_id) ON DELETE CASCADE
 );
 
 # Tabla GROUPS_ENROLLMENTS

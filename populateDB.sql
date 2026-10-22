@@ -291,10 +291,13 @@ DELETE FROM people
 WHERE person_id = 100;
 
 # Ejemplo 2: Borrar todos los grupos de teoría (Da error por FOREIGN KEYS)
-DELETE FROM groups
-WHERE activity = 'Teoría';
+#DELETE FROM groups
+#WHERE activity = 'Teoría';
 
 # Ejemplo 3: Borrar notas de suspenso
 DELETE FROM grades
 WHERE grade_value < 5;
+
+# Ejemplo: RESTRICT (Ponemos ON DELETE SET NULL en la foreign key de subjects para que funcione)
+DELETE FROM degrees WHERE degree_id = 1;
 
