@@ -252,5 +252,10 @@ INSERT INTO teaching_loads (professor_id, group_id, credits) VALUES
 #INSERT INTO groups (subject_id, group_name, activity, academic_year)
 #VALUES (1, 'T1', 'Teoría', 1999);
 
+# Pruebas TEACHING_LOADS
+
+# Insertamos una carga docente con créditos negativos o cero
+#INSERT INTO teaching_loads (professor_id, group_id, credits)
+#VALUES (1, 1, 0);
 
 
