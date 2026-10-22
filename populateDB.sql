@@ -258,4 +258,9 @@ INSERT INTO teaching_loads (professor_id, group_id, credits) VALUES
 #INSERT INTO teaching_loads (professor_id, group_id, credits)
 #VALUES (1, 1, 0);
 
+# Pruebas GRADES
+
+# Insertamos una nota con matrícula de honor pero valor inferior a 9
+#INSERT INTO grades (student_id, group_id, grade_value, exam_call, with_honors)
+#VALUES (1, 1, 8.5, 'Primera', 1);
 
