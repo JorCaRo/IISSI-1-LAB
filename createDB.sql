@@ -3,15 +3,16 @@
 USE grados;
 
 SET FOREIGN_KEY_CHECKS = 0;
-DROP TABLE IF EXISTS people;
-DROP TABLE IF EXISTS professors;
-DROP TABLE IF EXISTS students;
-DROP TABLE IF EXISTS degrees;
-DROP TABLE IF EXISTS subjects;
-DROP TABLE IF EXISTS groups;
-DROP TABLE IF EXISTS group_enrollments;
-DROP TABLE IF EXISTS grades;
 DROP TABLE IF EXISTS teaching_loads;
+DROP TABLE IF EXISTS professors;
+DROP TABLE IF EXISTS students_groups;
+DROP TABLE IF EXISTS grades;
+DROP TABLE IF EXISTS students_subjects;
+DROP TABLE IF EXISTS students;
+DROP TABLE IF EXISTS people;
+DROP TABLE IF EXISTS groups;
+DROP TABLE IF EXISTS subjects;
+DROP TABLE IF EXISTS degrees;
 SET FOREIGN_KEY_CHECKS = 1;
 
 
@@ -27,7 +28,6 @@ CREATE TABLE people (
     PRIMARY KEY (person_id)
 );
 
-
 # Tabla PROFESSORS
 
 CREATE TABLE professors (
@@ -36,7 +36,6 @@ CREATE TABLE professors (
     PRIMARY KEY (professor_id),
     FOREIGN KEY (professor_id) REFERENCES people(person_id)
 );
-
 
 # Tabla STUDENTS
 
@@ -55,7 +54,6 @@ CREATE TABLE degrees (
     duration_years TINYINT NOT NULL,
     PRIMARY KEY (degree_id)
 );
-
 
 # Tabla SUBJECTS
 
@@ -83,12 +81,14 @@ CREATE TABLE groups (
     FOREIGN KEY (subject_id) REFERENCES subjects(subject_id) ON DELETE CASCADE
 );
 
-# Tabla GROUPS_ENROLLMENTS
+# Tabla STUDENTS_GROUP (el antiguo GROUPS_ENROLLMENTS modificado)
 
-CREATE TABLE group_enrollments (
-    student_id INT,
-    group_id INT,
-    PRIMARY KEY (student_id, group_id),
+CREATE TABLE students_groups (
+    student_group_id INT AUTO_INCREMENT,
+    student_id INT NOT NULL,
+    group_id INT NOT NULL,
+    PRIMARY KEY (student_group_id),
+    CONSTRAINT uq_students_groups UNIQUE (student_id, group_id),
     FOREIGN KEY (student_id) REFERENCES students(student_id),
     FOREIGN KEY (group_id) REFERENCES groups(group_id)
 );
@@ -107,13 +107,27 @@ CREATE TABLE grades (
     FOREIGN KEY (group_id) REFERENCES groups(group_id)
 );
 
+# Tabla STUDENTS_SUBJECTS (el antiguo SUBJECT_ENROLLMENTS)
+
+CREATE TABLE students_subjects (
+    student_subject_id INT AUTO_INCREMENT,
+    student_id INT NOT NULL,
+    subject_id INT NOT NULL,
+    PRIMARY KEY (student_subject_id),
+    CONSTRAINT uq_students_subjects UNIQUE (student_id, subject_id),
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (subject_id) REFERENCES subjects(subject_id) ON DELETE CASCADE
+);
+
 # Tabla TEACHING_LOADS
 
 CREATE TABLE teaching_loads (
-    professor_id INT,
-    group_id INT,
+    teaching_load_id INT AUTO_INCREMENT,
+    professor_id INT NOT NULL,
+    group_id INT NOT NULL,
     credits DECIMAL(4,1) NOT NULL,
-    PRIMARY KEY (professor_id, group_id),
+    PRIMARY KEY (teaching_load_id),
+    CONSTRAINT uq_teaching_loads UNIQUE (professor_id, group_id),
     FOREIGN KEY (professor_id) REFERENCES professors(professor_id),
     FOREIGN KEY (group_id) REFERENCES groups(group_id)
 );
@@ -123,10 +137,10 @@ CREATE TABLE teaching_loads (
 # Restricciones PEOPLE
 
 ALTER TABLE people
-    ADD CONSTRAINT rn12_people_age CHECK (age BETWEEN 16 AND 70),
-    ADD CONSTRAINT rn14_people_dni CHECK (dni REGEXP '^[0-9]{8}[A-Za-z]$'),
-    ADD CONSTRAINT rn_uq_people_dni UNIQUE (dni),
-    ADD CONSTRAINT rn_uq_people_email UNIQUE (email);
+    ADD CONSTRAINT ck_people_rn12_age CHECK (age BETWEEN 16 AND 70),
+    ADD CONSTRAINT ck_people_rn14_dni CHECK (dni REGEXP '^[0-9]{8}[A-Za-z]$'),
+    ADD CONSTRAINT uq_people_dni UNIQUE (dni),
+    ADD CONSTRAINT uq_people_email UNIQUE (email);
 
 # Restricciones PROFESSORS
 
@@ -168,7 +182,6 @@ ALTER TABLE groups
     ),
     ADD CONSTRAINT uq_groups_name UNIQUE (subject_id, group_name, academic_year);
 
-
 # Restricciones TEACHING_LOADS
 
 ALTER TABLE teaching_loads
@@ -184,4 +197,3 @@ ALTER TABLE grades
     ADD CONSTRAINT ck_grades_exam_call CHECK (
         exam_call IN ('Primera','Segunda','Tercera','Extraordinaria')
     );
-

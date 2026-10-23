@@ -10,8 +10,9 @@ DELETE FROM students;
 DELETE FROM degrees;
 DELETE FROM subjects;
 DELETE FROM groups;
-DELETE FROM group_enrollments;
+DELETE FROM students_groups;
 DELETE FROM grades;
+DELETE FROM students_subjects;
 DELETE FROM teaching_loads;
 SET FOREIGN_KEY_CHECKS = 1;
 	
@@ -45,7 +46,6 @@ INSERT INTO people (person_id, dni, first_name, last_name, age, email) VALUES
     (24, '10000024Z', 'Álex', 'Delgado', 22, 'alex.delgado@alum.us.es'),
     (25, '10000025A', 'Paula', 'Bermejo', 21, 'paula.bermejo@alum.us.es');
 
-
 # Datos PROFESSORS
 
 INSERT INTO professors (professor_id, category) VALUES
@@ -54,7 +54,6 @@ INSERT INTO professors (professor_id, category) VALUES
     (3, 'AyudanteDoctor'),
     (4, 'Titular'),
     (5, 'Ayudante');
-
 
 # Datos STUDENTS
 
@@ -80,14 +79,13 @@ INSERT INTO students (student_id, access_method) VALUES
     (24, 'Selectividad'),
     (25, 'Selectividad');
 
-
 # Datos DEGREES
 
 INSERT INTO degrees (degree_id, degree_name, duration_years) VALUES
         (1, 'Ingeniería del Software', 4),
         (2, 'Ingeniería de Computadores', 4),
         (3, 'Tecnologías Informáticas', 4);
-        
+
 # Datos SUBJECTS
 
 INSERT INTO subjects (
@@ -118,8 +116,7 @@ INSERT INTO subjects (
     (15, 3, 'Introducción a la Ingeniería del Software y los Sistemas de Información II', 'IISSI-2', 6, 2, 'Obligatoria'),
     (16, 3, 'Sistemas Operativos', 'SO', 6, 2, 'Obligatoria'),
     (17, 3, 'Inteligencia Artificial', 'IA', 6, 2, 'Obligatoria');
-    
-    
+  
 # Datos GROUPS
 
 INSERT INTO groups (group_id, subject_id, group_name, activity, academic_year) VALUES
@@ -127,9 +124,9 @@ INSERT INTO groups (group_id, subject_id, group_name, activity, academic_year) V
         (2, 11, 'L1', 'Laboratorio', 2024),
         (3, 11, 'L2', 'Laboratorio', 2024);
 
-# Datos GROUP_ENROLLMENTS
+# Datos students_groups (el antiguo GROUP_ENROLLMENTS modificado)
 
-INSERT INTO group_enrollments (student_id, group_id) VALUES
+INSERT INTO students_groups (student_id, group_id) VALUES
         -- Teoría
         (6, 1), (7, 1), (8, 1), (9, 1), (10, 1),
         (11, 1), (12, 1), (13, 1), (14, 1), (15, 1),
@@ -141,7 +138,6 @@ INSERT INTO group_enrollments (student_id, group_id) VALUES
         -- Laboratorio L2
         (16, 3), (17, 3), (18, 3), (19, 3), (20, 3),
         (21, 3), (22, 3), (23, 3), (24, 3), (25, 3);
-
 
 # Datos GRADES
 
@@ -184,6 +180,14 @@ INSERT INTO grades (grade_id, student_id, group_id, grade_value, exam_call, with
     (33, 23, 1, 5.5, 'Tercera', 0),
     (34, 24, 1, 6.0, 'Tercera', 0),
     (35, 25, 1, 5.7, 'Tercera', 0);
+
+# Datos STUDENTS_SUBJECTS (el antiguo SUBJECT_ENROLLMENTS)
+
+INSERT INTO students_subjects (student_id, subject_id) VALUES
+        (6, 11), (7, 11), (8, 11), (9, 11), (10, 11),
+        (11, 11), (12, 11), (13, 11), (14, 11), (15, 11),
+        (16, 11), (17, 11), (18, 11), (19, 11), (20, 11),
+        (21, 11), (22, 11), (23, 11), (24, 11), (25, 11);
 
 
 # Datos TEACHING_LOADS
