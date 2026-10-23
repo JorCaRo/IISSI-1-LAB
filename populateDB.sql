@@ -1,5 +1,7 @@
 # Reinicio de commits por error en repositorio
 
+USE grados;
+
  -- Primero eliminados todos los datos de tabla en el caso de que los hubiese y después insertamos los datos iniciales.
 SET FOREIGN_KEY_CHECKS = 0;
 DELETE FROM people;
@@ -298,6 +300,6 @@ WHERE person_id = 100;
 DELETE FROM grades
 WHERE grade_value < 5;
 
-# Ejemplo: RESTRICT (Ponemos ON DELETE SET NULL en la foreign key de subjects para que funcione)
+# Ejemplo: RESTRICT (Ponemos ON DELETE CASCADE en la foreign key de subjects para que funcione)
 DELETE FROM degrees WHERE degree_id = 1;
 

@@ -1,5 +1,7 @@
 # Tuve un problema con los repositorios de GitHub, ya que sobrescribí los archivos con duplicados, lo que eliminó mis commits previos
 
+USE grados;
+
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS people;
 DROP TABLE IF EXISTS professors;
@@ -66,7 +68,7 @@ CREATE TABLE subjects (
     course TINYINT NOT NULL,
     subject_type VARCHAR(30) NOT NULL,
     PRIMARY KEY (subject_id),
-    FOREIGN KEY (degree_id) REFERENCES degrees(degree_id) ON DELETE SET NULL
+    FOREIGN KEY (degree_id) REFERENCES degrees(degree_id) ON DELETE CASCADE
 );
 
 # Tabla GROUPS
