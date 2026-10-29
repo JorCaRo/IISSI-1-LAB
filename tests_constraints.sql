@@ -5,7 +5,7 @@
 -- Se incluye en: iissi1/labs/L4 y AN-B
 --
 
-USE grades_db;
+USE grados;
 
 -- =============================================================
 -- TABLA DE RESULTADOS
