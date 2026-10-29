@@ -163,3 +163,29 @@ FROM subjects s;
 SELECT DISTINCT g.academic_year
 FROM groups g
 ORDER BY g.academic_year DESC;
+
+#-------------------------------------------------------------------------------------------------------------------------------------------
+
+# Subconsulta: Consulta dentro de una consulta.
+
+# Consulta 20: Agregado filtrado
+# Máxima nota del estudiante con ID 6
+SELECT MAX(g.grade_value) AS max_grade
+FROM grades g
+WHERE g.student_id = 6;
+
+# Consulta 21: IN con subconsulta
+# IDs de estudiantes del año académico 2024
+SELECT DISTINCT ge.student_id
+FROM students_groups ge
+WHERE ge.group_id IN (
+    SELECT g.group_id 
+    FROM groups g 
+    WHERE g.academic_year = 2024
+);
+
+# Consulta 22: Comparación con agregado
+# Asignaturas con más créditos que la media
+SELECT s.subject_name, s.credits
+FROM subjects s
+WHERE s.credits > (SELECT AVG(credits) FROM subjects);
