@@ -277,33 +277,33 @@ INSERT INTO teaching_loads (professor_id, group_id, credits) VALUES
 # Actualización con UPDATE
 
 # Ejemplo 1: Cambiar el email de una persona
-UPDATE people
-SET email = 'nuevo.email@us.es'
-WHERE person_id = 1;
+#UPDATE people
+#SET email = 'nuevo.email@us.es'
+#WHERE person_id = 1;
 
 # Ejemplo 2: Incrementar la duración de todos los grados en 1 año
-UPDATE degrees
-SET duration_years = duration_years + 1;
+#UPDATE degrees
+#SET duration_years = duration_years + 1;
 
 # Ejemplo 3: Cambiar la categoría de varios profesores
-UPDATE professors
-SET category = 'Titular'
-WHERE category = 'AyudanteDoctor';
+#UPDATE professors
+#SET category = 'Titular'
+#WHERE category = 'AyudanteDoctor';
 
 # Eliminación con DELETE
 
 # Ejemplo 1: Borrar una persona específica
-DELETE FROM people
-WHERE person_id = 100;
+#DELETE FROM people
+#WHERE person_id = 100;
 
 # Ejemplo 2: Borrar todos los grupos de teoría (Da error por FOREIGN KEYS)
 #DELETE FROM groups
 #WHERE activity = 'Teoría';
 
 # Ejemplo 3: Borrar notas de suspenso
-DELETE FROM grades
-WHERE grade_value < 5;
+#DELETE FROM grades
+#WHERE grade_value < 5;
 
 # Ejemplo: RESTRICT (Ponemos ON DELETE CASCADE en la foreign key de subjects para que funcione)
-DELETE FROM degrees WHERE degree_id = 1;
+#DELETE FROM degrees WHERE degree_id = 1;
 
