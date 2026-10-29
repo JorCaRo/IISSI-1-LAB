@@ -117,4 +117,29 @@ FROM grades g;
 
 #-------------------------------------------------------------------------------------------------------------------------------------------
 
+# Condiciones múltiples
+# Las cláusulas WHERE pueden combinar múltiples condiciones con operadores lógicos (AND, OR) y operadores de rango (BETWEEN, IN).
 
+# Consulta 13: OR lógico
+# Notas con valor menor que 5 o mayor que 9
+SELECT g.grade_id, g.grade_value, g.exam_call
+FROM grades g
+WHERE g.grade_value < 5 OR g.grade_value > 9;
+
+# Consulta 14: BETWEEN
+# Notas entre 5 y 7 (inclusive)
+SELECT g.grade_id, g.grade_value, g.exam_call
+FROM grades g
+WHERE g.grade_value BETWEEN 5 AND 7;
+
+# Consulta 15: IN
+# Asignaturas de 6 o 12 créditos
+SELECT s.subject_name, s.credits
+FROM subjects s
+WHERE s.credits IN (6, 12);
+
+# Consulta 16: Rango de edad
+# Personas con edad entre 20 y 30 años
+SELECT p.first_name, p.last_name, p.age
+FROM people p
+WHERE p.age BETWEEN 20 AND 30;
