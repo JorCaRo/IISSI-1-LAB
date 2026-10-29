@@ -1,5 +1,5 @@
 
-// Archivo de consultas para lab3
+# Archivo de consultas para lab3
 USE grados;
 
 #-------------------------------------------------------------------------------------------------------------------------------------------
@@ -193,8 +193,8 @@ WHERE s.credits > (SELECT AVG(credits) FROM subjects);
 #-------------------------------------------------------------------------------------------------------------------------------------------
 
 # Patrones con LIKE: El operador LIKE permite buscar patrones de texto usando comodines
-// % representa cualquier secuencia de caracteres (incluyendo ninguno).
-// _ representa exactamente un carácter.
+# % representa cualquier secuencia de caracteres (incluyendo ninguno).
+# _ representa exactamente un carácter.
 
 # Consulta 23: Terminación de cadena
 # Personas con DNI terminado en 'A'
